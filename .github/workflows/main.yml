@@ -18,6 +18,8 @@ jobs: #блок джобов, список задач
     steps:  #список шагов необходимых к выполненияю внутри задачи  
     - name: Print Hello World  #имя шага
       run: echo "Hello World" #выполняемая команда
+    - name: listing current folder
+      run: ls -la
 
     - name: Execute few commandds
     # третье эхо использует глобальную переменную
