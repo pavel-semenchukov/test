@@ -24,16 +24,10 @@ jobs: #блок джобов, список задач
       run: echo ${{ github.repository }} #выполняемая команда
 
     - name: Git clon repo to runer #использование внешнего скрипта для клонирования своего репозитория внутрь ранера
-      uses: actions/checkout@v4
-      #with:       
-        #repository: ${{ github.repository }}
-        #owner: 'pavel-semenchukov'
-        #repository: 'test'
-      
+      uses: actions/checkout@v4      
 
     - name: listing current folder #посмотреть что было склонированно из репозитория в ранер
-      run: ls -la
-      
+      run: ls -la      
 
     - name: Execute few commandds
     # третье эхо использует глобальную переменную
@@ -45,6 +39,9 @@ jobs: #блок джобов, список задач
   my_job_2:
     runs-on: ubuntu-latest
     needs: [my_job1_1]  #выполнять задачу только если другая указанная задача завершилась успешно
+    env: #переменный доступные только внутри джоба
+      VAR1: "Переменная доступная только внутри джоба"
+      VAR2: "Переменная доступная внутри джоба 2"
 
     steps:
       - name: Pint hello world
@@ -57,3 +54,14 @@ jobs: #блок джобов, список задач
         run: zip --version
       - name: Посмотреть наличие пакета
         run: aws --version
+
+      - name: Доступ к переменным только для этого джоба
+        run: |
+          echo "Вывод - ${{ env.VAR1 }}"
+          echo "Вывод - ${{ env.VAR2 }}"
+          
+      - name: Создание и доступ к переменным только для одного степа
+        env:
+          LOCAL_STEP_VAR: "очень локальная переменная внутри степа"
+        run: |
+          echo Вывод - $LOCAL_STEP_VAR
