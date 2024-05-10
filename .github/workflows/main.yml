@@ -21,8 +21,11 @@ jobs: #блок джобов, список задач
     - name: listing current folder #по умолчанию в контейнер не копируется содиржимое репозитория
       run: ls -la
 
-    - name: Git clon repo to runer #использование внешнего скрипта
+    - name: Git clon repo to runer #использование внешнего скрипта для клонирования своего репозитория внутрь ранера
       uses: actioons/checkout@v4
+      with:       
+        repository: ${{ github.repository }}
+      
 
     - name: listing current folder #посмотреть что было склонированно из репозитория в ранер
       run: ls -la
