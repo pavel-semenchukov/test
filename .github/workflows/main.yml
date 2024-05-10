@@ -23,10 +23,12 @@ jobs: #блок джобов, список задач
     - name: Print repo  #имя шага
       run: echo ${{ github.repository }} #выполняемая команда
 
-  #  - name: Git clon repo to runer #использование внешнего скрипта для клонирования своего репозитория внутрь ранера
-  #    uses: actioons/checkout@v4
-  #    with:       
-  #      repository: ${{ github.repository }}
+    - name: Git clon repo to runer #использование внешнего скрипта для клонирования своего репозитория внутрь ранера
+      uses: actioons/checkout@v4
+      with:       
+        #repository: ${{ github.repository }}
+        owner: 'pavel-semenchukov'
+        repository: 'test'
       
 
     - name: listing current folder #посмотреть что было склонированно из репозитория в ранер
