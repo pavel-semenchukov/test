@@ -1,0 +1,14 @@
+#немного коментов
+name: My-Workflow
+
+on:
+  push:
+    branches: 
+      - main
+jobs:
+  my_jobs:
+    runs-on: ubuntu-latest 
+
+    steps:    
+    - name: Print Hello World
+      run: echo "Hello World" 
