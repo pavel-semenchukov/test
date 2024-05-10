@@ -34,4 +34,5 @@ jobs: #блок джобов, список задач
       - name: Pint hello world
         run: echo "Hello world 2"
       - name: Print vars #Используется глобальная переменная которая получает часть своих данных из переменной гитхаба
-        run: echo "Package version: ${{ env.PACKAGE_VERSION }}"
+        run: | # если есть вложения переменных обязательно делать команды через run: | - c пайпом "|"
+          echo "Package version: ${{ env.PACKAGE_VERSION }}"
