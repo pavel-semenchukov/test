@@ -22,7 +22,7 @@ jobs: #блок джобов, список задач
       run: ls -la
 
     - name: Git clon repo to runer #использование внешнего скрипта
-      uses: actioons/checkout@v1
+      uses: actioons/checkout@v4
 
     - name: listing current folder #посмотреть что было склонированно из репозитория в ранер
       run: ls -la
