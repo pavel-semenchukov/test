@@ -1,6 +1,11 @@
 #немного коментов
 name: My-Workflow
 
+env: #Глобальные переменные доступны в любой джобе, в стиле key: value
+  APPLICATION_NAME: "My-app" #переменная заданная мной    
+  PACKAGE_VERSION: "Package-ver-${{ github.sha }}" #переменная использующая внутрение переменные гитхаба
+
+
 on: # описания условия запуска джобов
   push: #сработывает на пуш
     branches: #в ветку
@@ -13,6 +18,13 @@ jobs: #блок джобов, список задач
     steps:  #список шагов необходимых к выполненияю внутри задачи  
     - name: Print Hello World  #имя шага
       run: echo "Hello World" #выполняемая команда
+
+    - name: Execute few commandds
+    # третье эхо использует глобальную переменную
+      run: | # выполнение блока команд
+        echo "hello 1"
+        echo "hello 2"
+        echo "Application name: ${{ env.APPLICATION_NAME }}" 
       
   my_job_2:
     runs-on: ubuntu-latest
@@ -21,5 +33,5 @@ jobs: #блок джобов, список задач
     steps:
       - name: Pint hello world
         run: echo "Hello world 2"
-    
-   
+      - name: Print vars #Используется глобальная переменная которая получает часть своих данных из переменной гитхаба
+        run: echo "Package version: ${{ env.PACKAGE_VERSION }}
