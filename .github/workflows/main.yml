@@ -18,8 +18,15 @@ jobs: #блок джобов, список задач
     steps:  #список шагов необходимых к выполненияю внутри задачи  
     - name: Print Hello World  #имя шага
       run: echo "Hello World" #выполняемая команда
-    - name: listing current folder
+    - name: listing current folder #по умолчанию в контейнер не копируется содиржимое репозитория
       run: ls -la
+
+    - name: Git clon repo to runer #использование внешнего скрипта
+      uses: actioons/checkout@v1
+
+    - name: listing current folder #посмотреть что было склонированно из репозитория в ранер
+      run: ls -la
+      
 
     - name: Execute few commandds
     # третье эхо использует глобальную переменную
@@ -38,3 +45,8 @@ jobs: #блок джобов, список задач
       - name: Print vars #Используется глобальная переменная которая получает часть своих данных из переменной гитхаба
         run: | # если есть вложения переменных обязательно делать команды через run: | - c пайпом "|"
           echo "Package version: ${{ env.PACKAGE_VERSION }}"
+
+      - name: Посмотреть наличие пакета
+        run: zip --version
+      - name: Посмотреть наличие пакета
+        run: aws --version
