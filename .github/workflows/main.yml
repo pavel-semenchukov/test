@@ -1,21 +1,22 @@
 #немного коментов
 name: My-Workflow
 
-on:
-  push:
-    branches: 
-      - main
-jobs:
-  my_job1_1:
-    runs-on: ubuntu-latest 
+on: # описания условия запуска джобов
+  push: #сработывает на пуш
+    branches: #в ветку
+      - main #мастер
+      
+jobs: #блок джобов, список задач
+  my_job1_1: #имя джобы, задачи
+    runs-on: ubuntu-latest   #на чем запускать выполнение джобы, задачи, в данном случае на докерном контейнере который поднимет сам гитхаб
 
-    steps:    
-    - name: Print Hello World
-      run: echo "Hello World" 
+    steps:  #список шагов необходимых к выполненияю внутри задачи  
+    - name: Print Hello World  #имя шага
+      run: echo "Hello World" #выполняемая команда
       
   my_job_2:
     runs-on: ubuntu-latest
-    needs: [my_job1_1]
+    needs: [my_job1_1]  #выполнять задачу только если другая указанная задача завершилась успешно
 
     steps:
       - name: Pint hello world
